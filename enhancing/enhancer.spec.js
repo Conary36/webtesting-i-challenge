@@ -45,8 +45,10 @@ describe("failure", () =>{
             enhancement: 10,
             durability: 97
         }
-        expect(fail(newWeapon)).toEqual({...newWeapon})
+        expect(fail(newWeapon)).not.toEqual(newWeapon)
+    
     });
 })
+
 
 })
