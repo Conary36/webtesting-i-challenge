@@ -1,40 +1,52 @@
 const {repair, succeed, fail} = require('./enhancer.js');
 
 // test away!
-const weapon = {
-    name: 'excalibre',
-    enhancement: 20,
-    durability: 75
-}
-const Magic = {
-    name: 'fireball',
-    enhancement: 45,
-    durability: 3
-}
+
 
 describe("enhancer", ()=>{
     describe("repair", () =>{
         it("returns a new item with the durability restored to 100", ()=>{
+            const weapon = {
+                name: 'excalibre',
+                enhancement: 20,
+                durability: 75
+            }
             expect(repair(weapon)).toEqual({...weapon, durability: 100})  
         })
-        it("returns a new item with the durability restored to 100", () => {
-          expect(repair(weapon)).not.toEqual({ ...weapon, durability: 100 });
-        });
-        
-
+        // it("returns a new item with the durability restored to 100", () => {
+        //   expect(repair(weapon)).not.toEqual({ ...weapon, durability: 100 });
+        // });
     })
-    describe("success", ()=>{
-        it( "returns a new item object modified according to the rules defined by the client for enhancement success.", () =>{
 
-            expect(succeed(weapon)).toEqual({ ...weapon, enhancement: 20 });
-        })  
-        it("returns a new item object modified according to the rules defined by the client for enhancement success.", () => {
-          expect(succeed(weapon)).not.toEqual({ ...weapon, enhancement: 20 });
-        });  
-        // it("increases in power by 1", () =>{
-        //     expect
-        // }
 
+
+ describe("success", ()=>{
+      it("increases in power by 1", () => {
+    const weapon = {
+        name: 'excalibre',
+        enhancement: 20,
+        durability: 75
+    }
+    const expected = {
+        name: 'excalibre',
+        enhancement: 21,
+        durability: 75
+    }
+    const testingReturn = succeed(weapon) 
+    expect(testingReturn).toEqual(expected);
+
+      });
     })
-        
+
+describe("failure", () =>{
+    it("a fail(item) method that accepts an item ", ()=>{
+        const newWeapon = {
+            name: 'Gauntlet',
+            enhancement: 10,
+            durability: 97
+        }
+        expect(fail(newWeapon)).toEqual({...newWeapon})
+    });
+})
+
 })

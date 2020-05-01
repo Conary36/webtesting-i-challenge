@@ -6,16 +6,26 @@ module.exports = {
 };
 
 function succeed(item) {
-const success = item.enhancement + 1;
+// const success = item.enhancement + 1;
 if(item.enhancement === 20){
-  return item
-}else{
-  return { ...item, enhancement: success};
+  const weapon = {
+    name: item.name,
+    enhancement: item.enhancement +1,
+    durability: item.durability
+  };
+  return weapon;
 }
 }
 
 function fail(item) {
-  return { ...item };
+  if(item.enhancement < 15){
+    return { ...item.durability - 5 };
+  }else if(item.enhancement >= 15){
+    return{ ...item.durability - 10}
+  }else if(item.enhancement > 16){
+    return{...item.enhancement - 1}
+  }
+  
 }
 
 function repair(item) {
